@@ -1,30 +1,40 @@
-# LESSON01 - Cluster Architecture
+# Kubernetes 101
 
-- [Click Here to view the lesson](https://community.kubeskills.com/c/lessons/lesson-01)
+[Kubernetes 101 Course - FREE](https://community.kubeskills.com/c/101-course)
 
+## Lesson 00 - The What and How of Kubernetes
+
+- Start with concrete example in killercoda.com
+- use drawing pad
+- cover smallest unit (pods)
+- cover largest unit (deployments)
+- 
+
+### Docker and K8s Differences
 
 ```bash
-alias
+# run a container in docker
+docker run -d --name docker-success -p 80:80 chadmcrowell/docker-success:v1
 
-# list pods, services, and daemonsets in all namespaces
-k get po,svc,ds -A
+# show running container
+docker ps
 
-# list nodes in the cluster
-k get no
+# pull up webpage on port 80
 
-# list authentication config for cluster
-k config view
+# run a container in kubernetes
+k create deploy k8s-success --image chadmcrowell/k8s-success:v1; k expose deploy k8s-success --port 80 --type NodePort
 
-# list all resources avaiable
-k api-resources
+# get nodeport
+k get svc
 
-# list the cluster address and CoreDNS IP and port
-k cluster-info
+# pull up webpage on nodeport (e.g. 30000)
 
-# list the control plane component versions, and 
-k upgrade plan
+# to show port is already taken, start another docker container
+docker run -d --name another-container -p 80:80 chadmcrowell/docker-success:v1
 
-# list the events happening in the cluster
-k get events -A
+# create another pod with success
+k create deploy k8s-success3 --image nginx; k expose deploy k8s-success3 --port 80 --type NodePort
 
 ```
+
+This will be able to act as it's own host, so, you can have port 80 exposed on each pod, and that removes that limitation you had with Docker. Also, because it's not coupled with any host, it can move around to any infrastructure you want.
