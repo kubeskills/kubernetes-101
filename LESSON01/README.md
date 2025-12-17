@@ -1,16 +1,15 @@
-# Kubernetes 101
+# Kubernetes 101 Course
 
 [Kubernetes 101 Course - FREE](https://community.kubeskills.com/c/101-course)
 
-## Lesson 00 - The What and How of Kubernetes
+## How Containers Run
 
 - Start with concrete example in killercoda.com
 - use drawing pad
 - cover smallest unit (pods)
 - cover largest unit (deployments)
-- 
 
-### Docker and K8s Differences
+## Docker and K8s Differences
 
 ```bash
 # run a container in docker
